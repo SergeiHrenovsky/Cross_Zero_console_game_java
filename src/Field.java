@@ -13,7 +13,7 @@ public class Field {
     }
 
     boolean playerStep(int row, int column, int symbol) {
-        try {
+        if (row < 4 && column < 4) {
             if (field[row - 1][column - 1] == 0) {
                 field[row - 1][column - 1] = symbol;
                 return true;
@@ -21,8 +21,7 @@ public class Field {
                 System.out.println("Сюда уже походили, выберите другое место.");
                 return false;
             }
-        }
-        catch(Exception ex) {
+        } else {
             System.out.println("Введенные номера не соответствуют размеру игрового поля.");
             System.out.println("Поле состоит из 3-х рядов и 3-х столбцов.");
             return false;
