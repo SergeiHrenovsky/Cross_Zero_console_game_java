@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Cross_Zezo_console_game:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Cross_Zezo_console_game_jar</output-path>
+    <root id="archive" name="Cross_Zezo_console_game.jar">
+      <element id="module-output" name="Cross_Zezo_console_game" />
+    </root>
+  </artifact>
+</component>
