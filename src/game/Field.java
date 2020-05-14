@@ -1,3 +1,5 @@
+package game;
+
 public class Field {
     private int[][] field = new int[3][3];
 
