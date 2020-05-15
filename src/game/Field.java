@@ -1,7 +1,23 @@
 package game;
 
+import java.util.Properties;
+import java.io.*;
+
 public class Field {
     private int[][] field = new int[3][3];
+    private FileInputStream fis;
+    private Properties property = new Properties();
+
+    {
+        try {
+            fis = new FileInputStream("src/resources/config.properties");
+            property.load(fis);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     void showField() {
         System.out.println("-----------------------");
@@ -20,7 +36,12 @@ public class Field {
                 field[row - 1][column - 1] = symbol;
                 return true;
             } else {
-                System.out.println("Сюда уже походили, выберите другое место.");
+                try {
+                    System.out.println(new String(property.getProperty("message.field.placeTaken").getBytes("ISO8859-1")));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    System.out.println(ex.getMessage());
+                }
                 return false;
             }
         } else {
