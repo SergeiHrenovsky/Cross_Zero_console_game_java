@@ -4,6 +4,7 @@ import java.util.Properties;
 import java.io.*;
 
 public class PropertiesMessage {
+
     private static FileInputStream fis;
     private static Properties property = new Properties();
     private static String pathProperties = "src/resources/config.properties";

@@ -5,5 +5,5 @@
 Пустые клетки заполнены нулями.
 
 Для запуска игры в Linux требуется:
-  - зайти в папку out/artifacts/Cross_Zezo_console_game_jar
+  - зайти в папку содержащую jar файл
   - открыть терминал и запустить jar файл написав команду java -jar Cross_Zezo_console_game.jar
