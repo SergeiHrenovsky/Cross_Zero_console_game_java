@@ -1,33 +1,19 @@
 package game;
 
-import java.util.Properties;
-import java.io.*;
+import output.PropertiesMessage;
 
-public class Field {
+class Field {
     private int[][] field = new int[3][3];
-    private FileInputStream fis;
-    private Properties property = new Properties();
-
-    {
-        try {
-            fis = new FileInputStream("src/resources/config.properties");
-            property.load(fis);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     void showField() {
-        System.out.println("-----------------------");
+        System.out.println(PropertiesMessage.getMessage("border"));
         for(int row = 0; row < 3; row++) {
             for(int item: field[row]) {
                 System.out.print(item + " ");
             }
             System.out.println();
         }
-        System.out.println("-----------------------");
+        System.out.println(PropertiesMessage.getMessage("border"));
     }
 
     boolean playerStep(int row, int column, int symbol) {
@@ -36,17 +22,11 @@ public class Field {
                 field[row - 1][column - 1] = symbol;
                 return true;
             } else {
-                try {
-                    System.out.println(new String(property.getProperty("message.field.placeTaken").getBytes("ISO8859-1")));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    System.out.println(ex.getMessage());
-                }
+                System.out.println(PropertiesMessage.getMessage("placeTaken"));
                 return false;
             }
         } else {
-            System.out.println("Введенные номера не соответствуют размеру игрового поля.");
-            System.out.println("Поле состоит из 3-х рядов и 3-х столбцов.");
+            System.out.println(PropertiesMessage.getMessage("invalidDataField"));
             return false;
         }
     }
@@ -66,7 +46,7 @@ public class Field {
     private boolean winCheckRow() {
         for (int[] row: field) {
             if (row[0] != 0 && row[0] == row[1] && row[0] == row[2]) {
-                System.out.println("Выйграл игрок" + row[0]);
+                System.out.println(PropertiesMessage.getMessage("win") + row[0]);
                 return true;
             }
         }
@@ -76,7 +56,7 @@ public class Field {
     private boolean winCheckCol() {
         for (int i = 0; i < 3; i++) {
             if (field[0][i] != 0 && field[0][i] == field[1][i] && field[0][i] == field[2][i]) {
-                System.out.println("Выйграл игрок" + field[0][i]);
+                System.out.println(PropertiesMessage.getMessage("win") + field[0][i]);
                 return true;
             }
         }
@@ -85,11 +65,11 @@ public class Field {
 
     private boolean winCheckDiagonal() {
         if (field[0][0] != 0 && field[0][0] == field[1][1] && field[0][0] == field[2][2]) {
-            System.out.println("Выйграл игрок" + field[0][0]);
+            System.out.println(PropertiesMessage.getMessage("win") + field[0][0]);
             return true;
         }
         else if (field[0][2] != 0 && field[0][2] == field[1][1] && field[0][2] == field[2][0]) {
-            System.out.println("Выйграл игрок" + field[0][2]);
+            System.out.println(PropertiesMessage.getMessage("win") + field[0][2]);
             return true;
         }
         return false;
@@ -103,7 +83,7 @@ public class Field {
                 }
             }
         }
-        System.out.println("НИЧЬЯ");
+        System.out.println(PropertiesMessage.getMessage("deadHeat"));
         return true;
     }
 }

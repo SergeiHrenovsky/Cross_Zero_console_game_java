@@ -1,8 +1,9 @@
 package game;
 
 import java.util.Scanner;
+import output.PropertiesMessage;
 
-public class Player {
+class Player {
     private int symbol;
     private Scanner step = new Scanner(System.in);
 
@@ -10,8 +11,8 @@ public class Player {
         this.symbol = symbol;
     }
 
-    protected void showPlayer() {
-        System.out.println("Ходит игрок " + symbol);
+    void showPlayer() {
+        System.out.println(PropertiesMessage.getMessage("stepPlayer") + symbol);
     }
 
     void makeStep(Field gameField) {
@@ -21,27 +22,27 @@ public class Player {
     }
 
     private int setRowStep() {
-        System.out.println("Введите номер ряда:");
+        System.out.println(PropertiesMessage.getMessage("row"));
         Scanner row = new Scanner(System.in);
         try {
             return row.nextInt();
         }
         catch(Exception ex) {
-            System.out.println("ОШИБКА! Введенные данные не соответствуют номеру ряда.");
-            System.out.println("Введите, пожалуйста, цифру от 1 до 3:");
+            System.out.println(PropertiesMessage.getMessage("invalidDataRow") +
+                    PropertiesMessage.getMessage("inputNewNumber"));
             return setRowStep();
         }
     }
 
     private int setColStep() {
-        System.out.println("Введите номер столбца:");
+        System.out.println(PropertiesMessage.getMessage("col"));
         Scanner col = new Scanner(System.in);
         try {
             return col.nextInt();
         }
         catch(Exception ex) {
-            System.out.println("ОШИБКА! Введенные данные не соответствуют номеру столбца.");
-            System.out.println("Введите, пожалуйста, цифру от 1 до 3:");
+            System.out.println(PropertiesMessage.getMessage("invalidDataCol") +
+                    PropertiesMessage.getMessage("inputNewNumber"));
             return setColStep();
         }
     }
